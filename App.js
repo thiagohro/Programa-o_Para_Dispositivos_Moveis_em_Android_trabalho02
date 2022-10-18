@@ -14,7 +14,7 @@ const [lista, setLista] = useState(produtos);
 
 const addProduto = () => {
 
-  if(codigoProduto == '' || descricaoProduto == '' || precoProduto == '' || quantidadeProduto == '')
+  if(codigoProduto == '' || descricaoProduto == '' || precoProduto == '' || quantidadeProduto == '' || indice != -1)
   {
     return;
   } 
@@ -30,8 +30,8 @@ setLista ( (lista) => [
 
 const editaProduto = () => {
   setLista(lista.map((produto) =>
-    produto.email == codigoProduto
-      ?{...produto, escricao: descricaoProduto, preco: precoProduto, qtd: quantidadeProduto}
+    produto.codigo == codigoProduto
+      ?{...produto, descricao: descricaoProduto, preco: precoProduto, qtd: quantidadeProduto}
       :{...produto}
   ));  
   limparInput();
@@ -91,7 +91,7 @@ function limparInput()
       />
     </View>
 
-    <View>
+    <View style={styles.botaoContainer}>
     {/*BUTTONS*/}
     <TouchableOpacity
     style={styles.botao} onPress={addProduto} > 
@@ -150,6 +150,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius:20,
     fontSize: 20,
+    width: '30%'
+  },
+
+  botaoContainer:{
+      justifyContent: 'center',
+      flexDirection: 'row',
   },
 
   textoBotao:  {
